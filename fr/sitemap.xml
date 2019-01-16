@@ -3,46 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>guillaume-lagarde.github.io/fr/categories/</loc>
+    <loc>/fr/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="guillaume-lagarde.github.io/categories/"
+                href="/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="guillaume-lagarde.github.io/fr/categories/"
+                href="/fr/categories/"
                 />
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/fr/tags/</loc>
+    <loc>/fr/tags/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="guillaume-lagarde.github.io/tags/"
+                href="/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="guillaume-lagarde.github.io/fr/tags/"
+                href="/fr/tags/"
                 />
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/fr/</loc>
+    <loc>/fr/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="guillaume-lagarde.github.io/"
+                href="/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="guillaume-lagarde.github.io/fr/"
+                href="/fr/"
                 />
   </url>
   

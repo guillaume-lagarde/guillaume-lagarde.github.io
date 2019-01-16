@@ -3,63 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>guillaume-lagarde.github.io/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="guillaume-lagarde.github.io/fr/categories/"
+                href="/fr/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="guillaume-lagarde.github.io/categories/"
+                href="/categories/"
                 />
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/</loc>
+    <loc>/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="guillaume-lagarde.github.io/fr/"
+                href="/fr/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="guillaume-lagarde.github.io/"
+                href="/"
                 />
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/portfolio/</loc>
+    <loc>/portfolio/</loc>
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/publications/</loc>
+    <loc>/publications/</loc>
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/about.es/</loc>
+    <loc>/about.es/</loc>
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="guillaume-lagarde.github.io/fr/tags/"
+                href="/fr/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="guillaume-lagarde.github.io/tags/"
+                href="/tags/"
                 />
   </url>
   
   <url>
-    <loc>guillaume-lagarde.github.io/teaching/</loc>
+    <loc>/teaching/</loc>
   </url>
   
 </urlset>
