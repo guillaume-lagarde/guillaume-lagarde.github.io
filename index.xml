@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Guillaume Lagarde</title>
+    <link>guillaume-lagarde.github.io/</link>
+    <description>Recent content on Guillaume Lagarde</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="guillaume-lagarde.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Publications</title>
+      <link>guillaume-lagarde.github.io/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>guillaume-lagarde.github.io/publications/</guid>
+      <description> Conferences and Journals  Lempel-Ziv: a “one-bit catastrophe” but not a tragedy, with Sylvain Perifel  arXiv version
+ Proceedings of the 29th ACM-SIAM Symposium on Discrete Algorithms (SODA 2018)  Lower bounds and PIT for Non-Commutative Arithmetic circuits with Restricted Parse Trees, with Nutan Limaye and Srikanth Srinivasan  eccc version 42nd International Symposium on Mathematical Foundations of Computer Science (MFCS 2017) Computational Complexity (journal version)  De Bruijn-Erdős type theorems for graphs and posets, with Pierre Aboulker, David Malec, Abhishek Methuku and Casey Tompkins  arXiv version Discrete Mathematics, Volume 340, 2017   Prepublications  d-Galvin families, with Johan Håstad and Joseph Swernofsky (2019)  arXiv version Submitted  Lower bounds for arithmetic circuits via the Hankel matrix, with Nathanael Fijalkow, Pierre Ohlmann and Olivier Serre  eccc version Submitted  Tight Bounds using Hankel Matrix for Arithmetic Circuits with Unique Parse Trees, with Nathanaël Fijalkow and Pierre Ohlmann  eccc version  Non-commutative computations : lower bounds and PIT, with Guillaume Malod and Sylvain Perifel  eccc version Submitted   </description>
+    </item>
+    
+    <item>
+      <title>Sobre</title>
+      <link>guillaume-lagarde.github.io/about.es/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>guillaume-lagarde.github.io/about.es/</guid>
+      <description>Es el tema Robotica para Hugo.</description>
+    </item>
+    
+    <item>
+      <title>Teaching</title>
+      <link>guillaume-lagarde.github.io/teaching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>guillaume-lagarde.github.io/teaching/</guid>
+      <description>TODO</description>
+    </item>
+    
+  </channel>
+</rss>

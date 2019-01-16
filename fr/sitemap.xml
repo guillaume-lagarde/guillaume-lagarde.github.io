@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>guillaume-lagarde.github.io/fr/categories/</loc>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="guillaume-lagarde.github.io/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="guillaume-lagarde.github.io/fr/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>guillaume-lagarde.github.io/fr/tags/</loc>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="guillaume-lagarde.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="guillaume-lagarde.github.io/fr/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>guillaume-lagarde.github.io/fr/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="guillaume-lagarde.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="guillaume-lagarde.github.io/fr/"
+                />
+  </url>
+  
+</urlset>
