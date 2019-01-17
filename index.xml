@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>News</title>
+      <link>https://guillaume-lagarde.github.io/news/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://guillaume-lagarde.github.io/news/</guid>
+      <description>TODO</description>
+    </item>
+    
+    <item>
       <title>Publications</title>
       <link>https://guillaume-lagarde.github.io/publications/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
