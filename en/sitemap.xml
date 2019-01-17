@@ -3,63 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://guillaume-lagarde.github.io/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="/fr/categories/"
+                href="https://guillaume-lagarde.github.io/fr/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/"
+                href="https://guillaume-lagarde.github.io/categories/"
                 />
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://guillaume-lagarde.github.io/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="/fr/"
+                href="https://guillaume-lagarde.github.io/fr/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="https://guillaume-lagarde.github.io/"
                 />
   </url>
   
   <url>
-    <loc>/portfolio/</loc>
+    <loc>https://guillaume-lagarde.github.io/portfolio/</loc>
   </url>
   
   <url>
-    <loc>/publications/</loc>
+    <loc>https://guillaume-lagarde.github.io/publications/</loc>
   </url>
   
   <url>
-    <loc>/about.es/</loc>
+    <loc>https://guillaume-lagarde.github.io/about.es/</loc>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://guillaume-lagarde.github.io/tags/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="/fr/tags/"
+                href="https://guillaume-lagarde.github.io/fr/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/"
+                href="https://guillaume-lagarde.github.io/tags/"
                 />
   </url>
   
   <url>
-    <loc>/teaching/</loc>
+    <loc>https://guillaume-lagarde.github.io/teaching/</loc>
   </url>
   
 </urlset>
