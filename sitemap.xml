@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	
-	<sitemap>
-	   	<loc>https://guillaume-lagarde.github.io/en/sitemap.xml</loc>
-		
-	</sitemap>
-	
-	<sitemap>
-	   	<loc>https://guillaume-lagarde.github.io/fr/sitemap.xml</loc>
-		
-	</sitemap>
-	
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/news/</loc>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/portfolio/</loc>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/publications/</loc>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/about.es/</loc>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/teaching/</loc>
+  </url>
+  
+  <url>
+    <loc>https://guillaume-lagarde.github.io/_index.fr/</loc>
+  </url>
+  
+</urlset>
