@@ -1,1 +1,0 @@
-# guillaume-lagarde.github.io
