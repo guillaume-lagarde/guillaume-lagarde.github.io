@@ -1,0 +1,271 @@
+#+OPTIONS: num:nil toc:nil timestamp:nil reveal_center:nil reveal_progress:nil
+#+REVEAL_TRANS: linear
+#+REVEAL_THEME: moon_custom
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: alert @@html:<font color="#de7a18">$1</font>@@
+#+MACRO: defi @@html:<font color="#60c4a2">$1</font>@@
+#+MACRO: theorem @@html: <mark>⠀$1⠀</mark>@@
+#+MACRO: center @@html: <p class="center">$1</p>@@
+#+MACRO: surl@@html: <mark>$1</mark>@@
+
+#+Title: Search algorithms for program synthesis
+#+Subtitle: Learning and Verification day, Bordeaux
+#+Author: Guillaume Lagarde (LaBRI)
+#+Date: 13/01/2020
+
+
+* Program synthesis
+      # #+BEGIN_QUOTE
+      # *{{{defi(Program Synthesis)}}}* aims to generate automatically a *program* from
+      # its *specifications*.
+      # #+END_QUOTE
+   #+REVEAL_HTML: <img src="images/program_synthesis.png"  height="160">
+    *Program space* \\
+    • models from {{{alert(formal languages)}}} (automata, grammars)\\
+    • {{{alert(structured programs)}}} (Domain-specific Languages)
+
+   *Specifications*\\
+    • set of {{{alert(I/O examples)}}} (Inductive Program Synthesis)\\
+    • pre/post-conditions by {{{alert(logical formulas)}}} (Functional synthesis)
+
+#+BEGIN_NOTES
+(trade-off between /expressiveness/ and /efficiency/)
+
+Dream: reconstruct C++ programs but.. can even be undecidable
+
+We focus (comment ça se prononce ?) on Inudctive synthesis)
+#+END_NOTES
+** 
+   Similarities with ML
+      #+REVEAL_HTML: <img src="images/learning_algo.png"  height="170">
+  #+ATTR_REVEAL: :frag (appear)      
+  | Program Synthesis                        | Machine Learning          |
+  |------------------------------------------+---------------------------|
+  | small number of examples                 | large amount of data      |
+  | combinatorial search                     | optimization              |
+  | satisfies all specifications             | minimizes a loss function |
+  | domain-specific language (interpretable) | models hard to understand |
+
+#+BEGIN_NOTES
+data --> 'dayta'
+Everything is smooth, you have differentiable functions
+
+I/O -> example of a programmer that don't want to code boring Data
+ Wrangling. 
+It's the process of transforming and mapping data from one "raw" data
+ form into another format with the intent of making it more
+ appropriate and valuable for a variety of downstream purposes such as
+ analytics.
+
+- Superoptimization
+- Code repair
+#+END_NOTES
+
+
+**    Two challenges
+   - {{{alert(Search)}}}. Discover a piece of code satisfying the
+     specifications.
+   - {{{alert(Ranking)}}}. Find not just /some/ program but the /intended/ program.
+
+** FlashFill (Gulwani et al. 2011)
+   Included in Microsoft Excel!
+   #+REVEAL_HTML: <img src="images/FlashFill.png"  height="400">
+   #+REVEAL_HTML: <img src="images/FlashFill2.png"  height="400">
+   {{{alert(Correct with one I/O in 60% of the cases!)}}}
+#+BEGIN_NOTES
+Very simple MACRO (?)
+#+END_NOTES
+
+** 
+   #+REVEAL_HTML: <img src="images/hacker.jpg"  height="300" align:left>
+   Can we compute the average of two numbers in 32 bits without using 64 bits?
+   {{{alert(Problem)}}}: $x+y$ is {{{alert(prohibited!)}}}
+
+  #+ATTR_REVEAL: :frag (appear)
+   {{{defi(One solution)}}}
+   $$(x \& y)+(x \wedge y) \gg 1$$
+   where $\&$ is bitwise and, $\wedge$ is bitwise xor, and $\gg$ is right shift. 
+* 
+   #+REVEAL_HTML: <img src="images/deepcoder.png"  height="600">
+#+BEGIN_NOTES
+Predict some properties on the target program and use this guess to guide the search in the program space.
+Neural Program Synthesis.
+#+END_NOTES
+** Setting
+   - Programming by {{{alert(few)}}} examples (typically {{{alert(5)}}} I/O)
+     
+   - Program space:
+   #+REVEAL_HTML: <img src="images/examples.png"  height="300">
+   {{{alert(38)}}} high level instructions operating on lists
+#+BEGIN_NOTES
+Checker les instructions
+#+END_NOTES
+     
+** The line of attack
+   *Learning Inductive Program Synthesis (LIPS)*
+  #+ATTR_REVEAL: :frag (appear)
+  • choose an {{{alert(attribute function)}}}
+   $$\begin{align*}
+   \mathcal A: \text{programs} &\to \text{attribute vectors}\\
+   P &\mapsto \mathbf{a_P}\\
+   \end{align*}$$
+
+  #+ATTR_REVEAL: :frag (appear)
+  • train a model to predict $q(\mathbf a | \mathcal E)$, the
+     probability that attribute $\mathbf a$ {{{alert(is realized)}}}
+     in the target program, given $\mathcal E$ some I/O examples
+
+  #+ATTR_REVEAL: :frag (appear)
+  • given some fixed I/O examples, use the trained model as an expert
+     to guide the search in the program space
+** Challenges
+  #+ATTR_REVEAL: :frag (appear)
+   • need to find *useful* attributes
+  #+ATTR_REVEAL: :frag (appear)
+   - {{{alert(predictable)}}} from I/O
+   - {{{alert(reducing)}}} the search space
+  #+ATTR_REVEAL: :frag (appear)
+   • need to *train* the model
+    #+ATTR_REVEAL: :frag (appear)
+     - data generation
+     - choice of the model
+     #+ATTR_REVEAL: :frag (appear)
+   • need to find {{{alert(efficient ways)}}} to enumerate programs using the oracle
+
+#+BEGIN_NOTES
+CHECKER: comment Deepcoder génère les programmes
+a.Find good programs. b. These are typically reliant on generating
+synthetic examples for training. A particular challenge lies in
+generating meaningful sets of inputs and outputs, which
+well-characterize a given program and accurately demonstrate its
+behavior.
+
+Data Generation for Neural Programming by Example
+#+END_NOTES
+
+** In practice
+   For any instruction $i$, 
+    learn $q(\mathbf {a^i_P}| \mathcal E) = \Pr (i \text{ appears in the program }P)$
+
+  #+ATTR_REVEAL: :frag (appear)
+  *Search algorithms*
+  #+ATTR_REVEAL: :frag (appear)
+   • {{{alert(biased DFS)}}}
+    #+ATTR_REVEAL: :frag (appear)
+     1. choose a maximal length T
+     2. choose the first instruction to be the one maximizing $\Pr (i
+        \text{ appears in }P)$ and recursively fill the rest of the program, before moving on to a next choice for the first instruction.
+     #+ATTR_REVEAL: :frag (appear)
+   • {{{alert(Sort-and-add enumeration)}}}
+#+BEGIN_NOTES
+And it works pretty well, it beats/improves a lot previous technique -> look at the diagrams in the paper
+#+END_NOTES
+
+
+** Weaknesses
+   • *DFS*: some tuples are tested lately despite being pretty likely
+     #+REVEAL_HTML: <img src="images/weak.png"  height="160" align:left>
+   - first: position 36
+   - second: position $35\times36^4 = 58786560$
+
+   • *Sort-and-add*: test several time the same tuples + a tuple can be penalized for only one bad instruction
+     #+REVEAL_HTML: <img src="images/weak2.png"  height="160" align:left>
+     - ratio second/first position $\sim 100$
+* Blind mastermind
+  - $n$ colors (= $n$ instructions)
+  - a tuple of colors of size $k$ (= a program of length $k$)
+  Setting: {{{alert(an unknown distribution)}}} $D$ on tuples
+  #+ATTR_REVEAL: :frag (appear)
+  *The game*\\
+  • a secret tuple $t$ is sampled from a distribution $D$ \\
+  • the player guesses tuples until $t$ is found
+  #+ATTR_REVEAL: :frag (appear)
+  *Goal*\\ 
+  The player wants a strategy $S$ that minimizes
+  $$\mathbb{E}_{t\sim D}(\text{number of guesses to find }t \text{ with }S )$$
+** Deterministic strategy
+   A {{{alert(deterministic strategy)}}} is an order $\sigma \in \mathfrak{S}([n]^k)$ on the tuples
+   $$\sigma: \text{tuples} \to [n^k] $$
+
+   We want to minimize
+   $$\min_{\sigma} \sum_{t} \sigma(t)\cdot D(t)$$
+
+   that we can write more concisely using a scalar product
+    $$\min_{\sigma} [\sigma, D]$$
+
+** General strategies
+   A {{{alert(randomized strategy)}}} is a distribution $S$ on $\mathfrak{S}([n]^k)$
+   
+   This time, we want to minimize
+   $$\min_S \sum_{\sigma \in \mathfrak{S}([n]^k)} S(\sigma) \cdot [\sigma, D]$$
+*** Extremal cases
+  • No information about $D$
+  - play the {{{alert(uniform strategy)}}}
+  • Full information about $D$
+  - play a {{{alert(deterministic strategy)}}} $\sigma$ such that $D(\sigma^{-1}(1))> D(\sigma^{-1}(2)) > \dots > D(\sigma^{-1}(n^k))$
+*** No memory case
+    {{{alert(Small riddle)}}}
+    
+    You have a biased coin with probabilities $(\frac 2 3,\frac 1 3)$. A master
+    tosses the coin and you want to guess if that's head or
+    tail. */Problem/*: you can't memorize your previous guesses.
+#+BEGIN_NOTES
+digress
+#+END_NOTES
+  #+ATTR_REVEAL: :frag (appear)
+    {{{alert(Solution)}}}\\
+    Sample from a biased coin with probabilities $(\frac{\sqrt 2}{1+ \sqrt 2},\frac{1}{1+ \sqrt 2})$
+
+    #+REVEAL: split
+    {{{theorem(Theorem)}}}\\
+    With full knowledge of $D$, the best {{{alert(memoryless)}}} strategy is
+    $$D'(t) = \frac{\sqrt{D(t)}}{\sum_{t'} \sqrt{D(t')}}$$
+
+    - Nice if hard to compute {{{alert(on the fly)}}} the order $\sigma_D$
+    - Easy to run tests in parallel
+*** Partial information: "marginals"
+    Now we know for all color $c$:
+    $$M_{c} = \frac{\underset{t \sim D}{\mathbb{E}}(\#\{j \text{ s.t } t[j] = c\})}{k}$$
+
+  #+ATTR_REVEAL: :frag (appear)
+  *Heuristic*\\
+  Imagine you play against $D_M(t) = \prod_j M_{t[j]}$ \\
+
+*** Playing against $D_M$
+    Can argue you are in an {{{alert(average-case scenario)}}} since
+     $$\inf_S \underset{D \text{ that respects }M}{\mathbb{E}}(\underset{t\sim D}{\mathbb{E}}(\text{number of guesses to find }t \text{ with }S ))$$
+     is equal to
+     $$\inf_S \underset{t\sim D_M}{\mathbb{E}}(\text{number of guesses to find }t \text{ with }S )$$
+
+  #+ATTR_REVEAL: :frag (appear)
+  *Good thing*\\
+     In other words, you fight against one particular distribution, $D_M$
+
+  #+ATTR_REVEAL: :frag (appear)
+  *Best strategy*\\
+     Play the order $\sigma_{D_M}$ given by $D_M$
+
+    #+REVEAL: split
+    In a {{{alert(worst-case scenario)}}}, we would like to optimize
+     $$\inf_S \sup_{D \text{ that respects }M}(\underset{t\sim D}{\mathbb{E}}(\text{number of guesses to find }t \text{ with }S ))$$
+     
+     but this is another story…
+
+*** Playing against $D_M$
+    If you play the best strategy, the average time to find a tuple is
+    $$[\sigma_{D_M},D_M]$$
+
+  #+ATTR_REVEAL: :frag (appear)
+  {{{alert(Problem)}}}: How to find efficiently the order $\sigma_{D_M}$???
+
+  #+ATTR_REVEAL: :frag (appear)
+  {{{alert(Instead)}}}: Play the best memoryless strategy $D'_{M}(t) = \frac{\sqrt{D'_{M}(t)}}{\sum_{t'} \sqrt{D_M(t')}}$
+
+
+  #+ATTR_REVEAL: :frag (appear)  
+  {{{theorem(Theorem)}}}\\
+  $[\sigma_{D_M},D_M] \leq [D'_M,D_M] \leq k\cdot\ln n \cdot [\sigma_{D_M},D_M]$
+    
+* Conclusion
+*  Thanks!
+  
