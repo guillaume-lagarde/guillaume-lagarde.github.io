@@ -28,13 +28,6 @@
     • set of {{{alert(I/O examples)}}} (Inductive Program Synthesis)\\
     • pre/post-conditions by {{{alert(logical formulas)}}} (Functional synthesis)
 
-#+BEGIN_NOTES
-(trade-off between /expressiveness/ and /efficiency/)
-
-Dream: reconstruct C++ programs but.. can even be undecidable
-
-We focus (comment ça se prononce ?) on Inudctive synthesis)
-#+END_NOTES
 ** 
    Similarities with ML
       #+REVEAL_HTML: <img src="images/learning_algo.png"  height="170">
@@ -46,22 +39,6 @@ We focus (comment ça se prononce ?) on Inudctive synthesis)
   | satisfies all specifications             | minimizes a loss function |
   | domain-specific language (interpretable) | models hard to understand |
 
-#+BEGIN_NOTES
-data --> 'dayta'
-Everything is smooth, you have differentiable functions
-
-I/O -> example of a programmer that don't want to code boring Data
- Wrangling. 
-It's the process of transforming and mapping data from one "raw" data
- form into another format with the intent of making it more
- appropriate and valuable for a variety of downstream purposes such as
- analytics.
-
-- Superoptimization
-- Code repair
-#+END_NOTES
-
-
 **    Two challenges
    - {{{alert(Search)}}}. Discover a piece of code satisfying the
      specifications.
@@ -72,9 +49,6 @@ It's the process of transforming and mapping data from one "raw" data
    #+REVEAL_HTML: <img src="images/FlashFill.png"  height="400">
    #+REVEAL_HTML: <img src="images/FlashFill2.png"  height="400">
    {{{alert(Correct with one I/O in 60% of the cases!)}}}
-#+BEGIN_NOTES
-Very simple MACRO (?)
-#+END_NOTES
 
 ** 
    #+REVEAL_HTML: <img src="images/hacker.jpg"  height="300" align:left>
@@ -87,20 +61,12 @@ Very simple MACRO (?)
    where $\&$ is bitwise and, $\wedge$ is bitwise xor, and $\gg$ is right shift. 
 * 
    #+REVEAL_HTML: <img src="images/deepcoder.png"  height="600">
-#+BEGIN_NOTES
-Predict some properties on the target program and use this guess to guide the search in the program space.
-Neural Program Synthesis.
-#+END_NOTES
 ** Setting
    - Programming by {{{alert(few)}}} examples (typically {{{alert(5)}}} I/O)
      
    - Program space:
    #+REVEAL_HTML: <img src="images/examples.png"  height="300">
-   {{{alert(38)}}} high level instructions operating on lists
-#+BEGIN_NOTES
-Checker les instructions
-#+END_NOTES
-     
+   {{{alert(38)}}} high level instructions operating on lists     
 ** The line of attack
    *Learning Inductive Program Synthesis (LIPS)*
   #+ATTR_REVEAL: :frag (appear)
@@ -132,17 +98,6 @@ Checker les instructions
      #+ATTR_REVEAL: :frag (appear)
    • need to find {{{alert(efficient ways)}}} to enumerate programs using the oracle
 
-#+BEGIN_NOTES
-CHECKER: comment Deepcoder génère les programmes
-a.Find good programs. b. These are typically reliant on generating
-synthetic examples for training. A particular challenge lies in
-generating meaningful sets of inputs and outputs, which
-well-characterize a given program and accurately demonstrate its
-behavior.
-
-Data Generation for Neural Programming by Example
-#+END_NOTES
-
 ** In practice
    For any instruction $i$, 
     learn $q(\mathbf {a^i_P}| \mathcal E) = \Pr (i \text{ appears in the program }P)$
@@ -157,10 +112,6 @@ Data Generation for Neural Programming by Example
         \text{ appears in }P)$ and recursively fill the rest of the program, before moving on to a next choice for the first instruction.
      #+ATTR_REVEAL: :frag (appear)
    • {{{alert(Sort-and-add enumeration)}}}
-#+BEGIN_NOTES
-And it works pretty well, it beats/improves a lot previous technique -> look at the diagrams in the paper
-#+END_NOTES
-
 
 ** Weaknesses
    • *DFS*: some tuples are tested lately despite being pretty likely
@@ -184,7 +135,7 @@ And it works pretty well, it beats/improves a lot previous technique -> look at 
   The player wants a strategy $S$ that minimizes
   $$\mathbb{E}_{t\sim D}(\text{number of guesses to find }t \text{ with }S )$$
 ** Deterministic strategy
-   A {{{alert(deterministic strategy)}}} is an order $\sigma \in \mathfrak{S}([n]^k)$ on the tuples
+   A {{{alert(deterministic strategy)}}} is an order on tuples
    $$\sigma: \text{tuples} \to [n^k] $$
 
    We want to minimize
@@ -194,7 +145,7 @@ And it works pretty well, it beats/improves a lot previous technique -> look at 
     $$\min_{\sigma} [\sigma, D]$$
 
 ** General strategies
-   A {{{alert(randomized strategy)}}} is a distribution $S$ on $\mathfrak{S}([n]^k)$
+   A {{{alert(randomized strategy)}}} is a distribution $S$ on orders
    
    This time, we want to minimize
    $$\min_S \sum_{\sigma \in \mathfrak{S}([n]^k)} S(\sigma) \cdot [\sigma, D]$$
@@ -209,9 +160,6 @@ And it works pretty well, it beats/improves a lot previous technique -> look at 
     You have a biased coin with probabilities $(\frac 2 3,\frac 1 3)$. A master
     tosses the coin and you want to guess if that's head or
     tail. */Problem/*: you can't memorize your previous guesses.
-#+BEGIN_NOTES
-digress
-#+END_NOTES
   #+ATTR_REVEAL: :frag (appear)
     {{{alert(Solution)}}}\\
     Sample from a biased coin with probabilities $(\frac{\sqrt 2}{1+ \sqrt 2},\frac{1}{1+ \sqrt 2})$
