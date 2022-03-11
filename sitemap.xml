@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://guillaume-lagarde.github.io/categories/</loc>
+    <loc>https://guillaume-lagarde.github.io/about/</loc>
   </url>
   
   <url>
@@ -11,19 +11,15 @@
   </url>
   
   <url>
+    <loc>https://guillaume-lagarde.github.io/categories/</loc>
+  </url>
+  
+  <url>
     <loc>https://guillaume-lagarde.github.io/herethere/</loc>
   </url>
   
   <url>
-    <loc>https://guillaume-lagarde.github.io/portfolio/</loc>
-  </url>
-  
-  <url>
     <loc>https://guillaume-lagarde.github.io/publications/</loc>
-  </url>
-  
-  <url>
-    <loc>https://guillaume-lagarde.github.io/about.es/</loc>
   </url>
   
   <url>
