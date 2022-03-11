@@ -1,0 +1,309 @@
+#+OPTIONS: num:nil toc:nil timestamp:nil reveal_center:t reveal_progress:nil
+#+REVEAL_TRANS: linear
+#+REVEAL_THEME: custom
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: alert @@html:<font color="#de7a18">$1</font>@@
+#+MACRO: defi @@html:<font color="#3465a4">$1</font>@@
+#+MACRO: theorem @@html: <mark>⠀$1⠀</mark>@@
+#+MACRO: center @@html: <p class="center">$1</p>@@
+#+MACRO: surl @@html: <mark>$1</mark>@@
+
+#+Title: Tradeoffs in Polynomial Calculus
+#+Author: Guillaume Lagarde, Jakob Nordström, Dmitry Sokolov, Joseph Swernofsky
+#+Date: 08/10/2019
+
+* 
+    #+ATTR_HTML: :style text-align:center
+    $\phi = (x_1 \vee x_2) \wedge (\neg x_1 \vee x_3) \wedge (\neg x_2 \vee x_3)$
+  #+ATTR_REVEAL: :frag (appear)
+  #+ATTR_HTML: :style text-align:center
+  {{{defi(satifiable)}}}: $x_1 = 1, x_2 = 0, x_3 = 1$
+  #+ATTR_REVEAL: :frag (appear)
+  #+ATTR_HTML: :style text-align:center
+  $\psi = (x_1 \vee x_2) \wedge (\neg x_1 \vee x_3) \wedge (\neg x_2 \vee x_3) \wedge \neg x_3$
+  #+ATTR_REVEAL: :frag (appear)
+  #+ATTR_HTML: :style text-align:center
+  {{{defi(Not satifiable :()}}}
+  
+** Resolution proof system
+   
+   Deals with CNF formulas. 
+   
+   {{{alert(Sound)}}} and {{{alert(Refutation complete)}}}
+      | Axioms                               | Unique derivation rule                               |
+      |--------------------------------------+------------------------------------------------------|
+      | Clauses from the CNF formula ⠀⠀⠀⠀⠀⠀⠀ |  $\frac{C \vee x \ \ \ \ \ \ D \vee \neg x}{C\vee D}$                   |
+      
+   {{{defi(A refutation)}}} = derivation of the empty clause $\bot$
+
+   #+REVEAL_HTML: <img src="images/resolution_derivation.svg"  height="230">
+
+** Proof complexity 
+   *Some measures*
+   
+   For a refutation $\Pi$
+
+   - Length($\Pi$) = #clauses
+   - Width($\Pi$) = maximum number of literals in a clause
+   - and also Space($\Pi$), Depth($\Pi$), \dots
+   #+ATTR_REVEAL: :frag (appear)
+   #+ATTR_HTML: :style font-size:1em
+   *{{{alert(WANTED)}}}*\\
+   Superpolynomial lower bounds on the amount of resource needed to prove that some given formula is unsatisfiable.\\
+   ⠀\\
+   {{{defi(or\, in other words)}}}\\
+   ⠀\\
+   Prove that some given proof system (like resolution) cannot efficiently certify that some explicit CNF formula is unsatisfiable.
+ 
+** Why proof complexity?
+   Analyse algorithms used for SAT-solving\\
+   ({{{defi(Weak Curry-Howard correspondences)}}})
+| Proof systems       | Algorithms                      |
+|---------------------+---------------------------------|
+| Resolution          | Conflict-driven clause learning |
+| Polynomial Calculus | Gröbner basis algorithms        |
+| Cutting planes      | Pseudo-Boolean solvers          |
+
+   #+ATTR_REVEAL: :frag (appear)
+*{{{defi(Complexity theory)}}}*\\
+NP=co-NP $\Leftrightarrow$ $\exists$ a polynomially bounded propositional proof system
+
+* Trade-offs between length and width
+  $\exists$ proof of width $k \Rightarrow \exists$ proof of length $n^{O(k)}$ (tight: [Atserias et al. 2014])
+     #+ATTR_REVEAL: :frag (appear)
+   *{{{theorem(Ben-Sasson\, Wigderson (JACM‘01))}}}* \\ 
+   Let $F$ be a $k$ -CNF formula over $n$ variables, then
+$$\exists \text{refutation of length }S \Rightarrow \exists \text{refutation of width } k + \sqrt{n \log S}$$
+   #+ATTR_REVEAL: :frag (appear)
+   --- --- --- \\
+Paved the way to almost all lower bounds 
+$$ LENGTH \geq \exp(\frac{(WIDTH - k)^2}{n})$$
+   #+ATTR_REVEAL: :frag (appear)
+   *{{{alert(Question)}}}*\\
+   What about both small length and width in the same refutation??
+
+**  
+
+   *{{{theorem(Thapen (TOC‘16))}}}*
+
+   No. You need to pay exponentially the decrease in width.
+   
+* Algebraic proof systems
+
+  
+  $X = \{x_1,\dots, x_n \}$, $f_1,\dots, f_m \in \mathbb{F}[X]$.
+
+  {{{theorem(Goal)}}}
+
+  Prove that the system $\{f_1(X)=0,\dots,f_m(X)=0 \}$ has no complex/real/boolean solutions
+
+  #+ATTR_REVEAL: :frag (appear)
+  When used to refute CNF formulas:
+   $$ \begin{align*}
+   \text{Clauses} &\to \text{Polynomials}\\
+   x_1 \vee \neg x_2 \vee x_3 &\to x_1 (1-x_2) x_3\\
+   \text{True} &\to 0\\
+   \text{False} &\to 1\\
+   \end{align*}$$
+
+** (Boolean) Hilbert Nullstellensatz
+ - $\{f_1(X) = 0, \dots, f_m(X) = 0 \}$ has no boolean solutions
+    $$\Leftrightarrow $$
+ - $1 \in \text{ ideal}(f_1(X),\dots, f_m(X), x_1^2-x_1,\dots, x_n^2 - x_n)$
+    $$\Leftrightarrow $$
+ - $1 = \sum\limits_{i = 1}^m f_i(X).r_i(X) + \sum\limits_{i = 1}^n (x_i^2-x_i).s_i(X)$
+
+    The polynomials $r_i$ and $s_i$ are the proof.
+** Polynomial Calculus Resolution  (PCR)
+   {{{alert(Sound)}}} and {{{alert(Refutation complete)}}}
+   
+   set of variables $X = x_1,\bar x_1, \dots, x_n, \bar x_n$, some polynomials $f_1,\dots, f_m$
+   
+   | Axioms                                                 | Derivation rules                                                                           |
+   |--------------------------------------------------------+--------------------------------------------------------------------------------------------|
+   | boolean axioms:  $\overline{x^2-x}$                    | $\frac{p \ \ \ \ \ \ q}{\alpha p + \beta q}$ for any $\alpha,\beta \in \mathbb{F}$         |
+   | complementary axioms: $\overline{x + \overline{x} - 1}$     | $\frac{p}{m.p}$ for any monomial $m$                                               |
+   | $\overline{f_i(X)}$                                    |                                                                                            |
+   {{{defi(A refutation \(\Pi\))}}} = derivation of the polynomial $1$
+   #+ATTR_HTML: :style text-align:left
+    - Size($\Pi$) = #monomials (counted with repetition)\\
+    - Degree($\Pi$) = max degree
+
+** 
+   *Simulation of the resolution rule* 
+
+   $$\text{Resolution}(y \vee \neg z, x \vee z) = y \vee x$$
+   
+   #+REVEAL_HTML: <img src="images/PCR_derivation.svg"  height="200" align="center">
+** 
+   Polynomials calculus strictly stronger than resolution w.r.t length/size, width/degree
+ 
+   {{{theorem(open problem)}}}
+
+   Is PCR strictly stronger than resolution w.r.t space?
+
+   
+* Trade-offs in PCR: same story
+  $\exists$ proof of degree $d \Rightarrow \exists$ proof of size $n^{O(d)}$
+  (tight: [Atserias et al. 2014])
+
+  #+ATTR_REVEAL: :frag (appear)
+  *{{{theorem(Impagliazzo\, Pudlák\, Sgall (‘99))}}}*\\ 
+  Let $\mathcal{P}$ be a set of polynomials of degree at most $d$ in $n$ variables, then
+  $$\exists \text{refutation of size }S \Rightarrow \exists \text{refutation of degree } d + \sqrt{n \log S}$$
+  #+ATTR_REVEAL: :frag (appear)
+  --- --- --- \\
+  Paved the way to almost all lower bounds 
+  $$ SIZE \geq \exp(\frac{(DEGREE - d)^2}{n})$$
+  #+ATTR_REVEAL: :frag (appear)
+  *{{{alert(Question)}}}*\\
+  What about both small size and width in the same refutation??
+
+** main result   
+   *{{{theorem(L\, Nordström\, Sokolov\, Swernofsky)}}}*
+      
+   For any $c$ large enough there is a CNF formula $\phi$ over $c^{1+
+   o(1)}$ variables, of size $c^{1+o(1)}$ and degree $O(\log c)$ such that
+   - $\phi$ has a PCR refutation of size polynomial in $c$,
+   - any PCR refutation of degree $\leq c-2$ has superpolynomial size in $c$.
+
+This answers the question since $$O(\log c) + O(\sqrt{c^{1+o(1)}\log c})\leq c-2 $$
+
+
+
+* Colored polynomial local search (CPLS)
+
+
+  #+REVEAL_HTML: <img src="images/CPLS.png"  height="380" align="left">
+  #+ATTR_HTML: :style text-align:left
+  #+ATTR_REVEAL: :frag (appear)
+  Each vertex gets a set of colors: a subset of $[c]$ \\
+  $1$ called the *safe color*.
+  #+ATTR_REVEAL: :frag (appear)
+  #+ATTR_HTML: :style text-align:left
+  {{{color(#ef2929,At least one color for each vertex here)}}}
+  #+ATTR_REVEAL: :frag (appear)
+  #+ATTR_HTML: :style text-align:left
+  {{{color(#3465a4,No color for this vertex)}}}
+  #+ATTR_REVEAL: :frag (appear)
+  #+ATTR_HTML: :style text-align:left
+  {{{color(#4e9a06,If f(u\,v) = TRUE\, then u contains the colors of vertex v OR the safe color.)}}}
+
+** Small proof
+   From now on, we fix $a = b = c^{\epsilon}$.
+
+   {{{theorem(Claim)}}}
+   
+   CPLS(c^{\epsilon},c^{\epsilon},c) has a refutation of size $O(c^{1+3 \epsilon})$ and degree $c + \epsilon \log c + 1$
+
+   {{{theorem(Wanted)}}}
+   
+   No refutation of degree $\leq c-2$ and size polynomial in $c$.
+** Strategy
+   very few tools
+   - {{{alert(degree lower bound)}}} $\to$  R operator: Aleknovich and Razborov[2001],
+   - {{{alert(size lower bound)}}} $\to$ degree lower bound.
+   #+ATTR_REVEAL: :frag (appear) 
+   --- --- --- \\
+   Suppose $\Pi$ is a small degree, small size refutation\\
+    {{{theorem(Idea: )}}} hit both refutation/formula with a well chosen restriction $\rho$
+   $$\begin{align*}\rho: &X \to X \cup \{0,1\} \\
+   &\rho(x) = x \text{ or } \rho(x) = 0/1\end{align*}$$
+   #+ATTR_REVEAL: :frag (appear)
+   {{{theorem(Fact:)}}} $\Pi_{|\rho}$ is a refutation of $\phi_{|\rho}$.
+   #+ATTR_REVEAL: :frag (appear)
+   #+ATTR_HTML: :style text-align:left
+   1- Prove that $\Pi_{|\rho}$ enjoys beautiful properties (because of hypothesis),\\
+   2- Prove that $\phi_{|\rho}$ does not have such a beautiful refutation (by tuning R operator).
+   
+   
+** The restriction
+   $p = a^{-3/4}, w = a^{7/8}$
+   #+ATTR_REVEAL: :frag (appear)
+   - For any vertex $u$, with proba $p$, set independently $G(u,y)$, for $y >1$, to TRUE of FALSE with proba $1/2$.
+   - If we have set the colors at $u$, then we also set $G(u,1)=$ TRUE.
+   #+ATTR_REVEAL: :frag (appear)
+   - If we set the colors at $u$, then with proba $1/2$, we also set $f(u,v)$ to TRUE for a uniformly random chosen vertex $v \in N(u)$ and the others $f(u,\cdot)$ to zero.
+   #+ATTR_REVEAL: :frag (appear)
+   {{{defi(a monomial \(m\) mentions a vertex u )}}} if $m$ contains $G(u,\cdot)$ or $f(u,\cdot)$.
+   #+ATTR_REVEAL: :frag (appear)
+   {{{defi(a beautiful monomial )}}} is a monomial that mentions at most $w$ vertices and at most $c-2$ colors.
+   #+ATTR_REVEAL: :frag (appear)
+   {{{theorem(Claim: )}}} If $\Pi$ is of small size, degree $\leq c-2$, then with high probability $\Pi_{|\rho}$ contains only beautiful monomials.
+
+** Main message
+   Tune previous results by replacing {{{defi("is of small degree")}}} with {{{defi("is beautiful")}}}.
+
+* R operator
+  Introduced by Aleknovich and Razborov for degree lower bound\\
+  Overapproximation of polynomials derivable in degree at most $d$.
+
+  $$R: \mathbb{F}[X] \to \mathbb{F}[X] \text{ a linear map}$$
+
+  - $R(1) \neq 0$
+  - $R(p) = 0$ for any axiom $p$
+  - $R(xR(t)) = R(xt)$ for any variable $x$, monomial $t$, with $\deg xt \leq d$
+  #+REVEAL_HTML: <img src="images/Roperator1.svg"  height="310">
+
+
+** R operator via expansion: main idea
+   $G$ the bipartite graph "axioms/variables". $(p(X),y)$ is an edge if $y$ is a variable in $p(X)$. 
+   If $S$ is a set of axioms:
+   $$\partial(S) = \{ v \in N(S) \text{ s.t }v \text{ has a unique neighbor in } S \}$$
+   #+ATTR_REVEAL: :frag (appear)
+   We can construct an R-operator if $G$ is a good {{{defi(expander graph)}}} (meaning: for any set $S$ of axioms of size at most $s$, |\partial(S)| \geq \alpha.|S|)
+
+
+** Definition of R  
+    • Notion of {{{defi(support of a monomial)}}}:
+    $$ Supp: t \mapsto \text{ set of axioms } $$
+    $Supp(t)$ is more or less the set of axioms meaningful to derive $t$.
+    #+ATTR_REVEAL: :frag (appear)
+    • $R$ is defined on monomials:
+    $$R(t) = R_{Supp(t)}(t)\text{ : reduction of $t$ modulo the ideal generated by } Supp(t)$$
+    #+ATTR_REVEAL: :frag (appear)
+    • $R$ is then extended linearly to any polynomial
+ 
+** Sufficient property of the support
+   Suppose we have the following:
+   - If $A$ is a small set of axioms, $R_{Supp(t) \cup A}(t) = R_{Supp(t)}(t)$
+   #+ATTR_REVEAL: :frag (appear)
+   $$R(xR(t)) = R(x\sum_{t' \in R(t)}t') = \sum_{t' \in R(t)} R(xt')  = \sum_{t' \in R(t)} R_{Supp(xt')}(xt')$$
+   #+ATTR_REVEAL: :frag (appear)
+$$ = \sum_{t' \in R(t)} R_{Supp(xt)}(xt') = R_{Supp(xt)}(xR(t)) $$
+   #+ATTR_REVEAL: :frag (appear)
+$$ = R_{Supp(xt)}(xR_{Supp(t)}(t)) = R(xt) $$
+
+
+** R operator via expansion
+   #+ATTR_HTML: :style text-align:center
+   Whiteboard
+
+** R operator: tuned version
+  Overapproximation of polynomials derivable by {{{alert(beautiful derivation)}}}
+
+  $$R: \mathbb{F}[X] \to \mathbb{F}[X] \text{ a linear map}$$
+
+  - $R(1) \neq 0$
+  - $R(p) = 0$ for any axiom $p$
+  - $R(xR(t)) = R(xt)$ for any variable $x$, monomial $t$ such {{{alert(that \(xt\) is beautiful)}}}
+  #+REVEAL_HTML: <img src="images/Roperator2.svg"  height="310">
+
+* What comes next
+  *{{{defi(Main challenge = tradeoffs for stronger proof systems)}}}*
+
+  • *Sums-of-Squares*. In Atserias and Hakoniemi [2019]: 
+#+BEGIN_QUOTE
+If a system of degree-k polynomials constraints over n boolean
+variables has a Sums-of-Squares (SOS) refutation with at most $s$
+monomials, then it also has a refutation of degree at most $O(k + \sqrt{n \log
+s})$.
+#+END_QUOTE
+
+
+  • Atserias and Hakoniemi also gives a similar statement for the *Positivstellensatz* proof system
+
+  • but also *Sherali-Adams*, \dots
+  
+*  Thanks!
+

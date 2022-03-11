@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Search algorithms for program synthesis</title>
+<meta name="author" content="(Guillaume Lagarde (LaBRI))"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+
+<link rel="stylesheet" href="https://guillaume-lagarde.github.io/talks/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://guillaume-lagarde.github.io/talks/reveal.js/css/theme/moon_custom.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://guillaume-lagarde.github.io/talks/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Search algorithms for program synthesis</h1><p class="subtitle">(Learning and Verification day, Bordeaux)</p>
+<h2 class="author">Guillaume Lagarde (LaBRI)</h2><h2 class="date">13/01/2020</h2>
+</section>
+
+
+<section>
+<section id="slide-orgd95a6ae">
+<h2 id="orgd95a6ae">Program synthesis</h2>
+<img src="images/program_synthesis.png"  height="160">
+<p>
+<b>Program space</b> <br />
+• models from <font color="#de7a18">formal languages</font> (automata, grammars)<br />
+• <font color="#de7a18">structured programs</font> (Domain-specific Languages)
+</p>
+
+<p>
+<b>Specifications</b><br />
+ • set of <font color="#de7a18">I/O examples</font> (Inductive Program Synthesis)<br />
+ • pre/post-conditions by <font color="#de7a18">logical formulas</font> (Functional synthesis)
+</p>
+
+</section>
+<section id="slide-orgbff04c3">
+<h3 id="orgbff04c3"></h3>
+<p>
+Similarities with ML
+</p>
+<img src="images/learning_algo.png"  height="170">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="fragment (appear)">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Program Synthesis</th>
+<th scope="col" class="org-left">Machine Learning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">small number of examples</td>
+<td class="org-left">large amount of data</td>
+</tr>
+
+<tr>
+<td class="org-left">combinatorial search</td>
+<td class="org-left">optimization</td>
+</tr>
+
+<tr>
+<td class="org-left">satisfies all specifications</td>
+<td class="org-left">minimizes a loss function</td>
+</tr>
+
+<tr>
+<td class="org-left">domain-specific language (interpretable)</td>
+<td class="org-left">models hard to understand</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="slide-org1afb90e">
+<h3 id="org1afb90e">Two challenges</h3>
+<ul>
+<li><font color="#de7a18">Search</font>. Discover a piece of code satisfying the
+specifications.</li>
+<li><font color="#de7a18">Ranking</font>. Find not just <i>some</i> program but the <i>intended</i> program.</li>
+
+</ul>
+
+</section>
+<section id="slide-org97990f6">
+<h3 id="org97990f6">FlashFill (Gulwani et al. 2011)</h3>
+<p>
+Included in Microsoft Excel!
+</p>
+<img src="images/FlashFill.png"  height="400">
+<img src="images/FlashFill2.png"  height="400">
+<p>
+<font color="#de7a18">Correct with one I/O in 60% of the cases!</font>
+</p>
+
+</section>
+<section id="slide-orgdd289b0">
+<h3 id="orgdd289b0"></h3>
+<img src="images/hacker.jpg"  height="300" align:left>
+<p>
+Can we compute the average of two numbers in 32 bits without using 64 bits?
+<font color="#de7a18">Problem</font>: \(x+y\) is <font color="#de7a18">prohibited!</font>
+</p>
+
+<p class="fragment (appear)">
+<font color="#60c4a2">One solution</font>
+\[(x \& y)+(x \wedge y) \gg 1\]
+where \(\&\) is bitwise and, \(\wedge\) is bitwise xor, and \(\gg\) is right shift. 
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org0cc8493">
+<h2 id="org0cc8493"></h2>
+<img src="images/deepcoder.png"  height="600">
+</section>
+<section id="slide-org4cc2af2">
+<h3 id="org4cc2af2">Setting</h3>
+<ul>
+<li>Programming by <font color="#de7a18">few</font> examples (typically <font color="#de7a18">5</font> I/O)</li>
+
+<li>Program space:</li>
+
+</ul>
+<img src="images/examples.png"  height="300">
+<p>
+<font color="#de7a18">38</font> high level instructions operating on lists     
+</p>
+</section>
+<section id="slide-org44a1720">
+<h3 id="org44a1720">The line of attack</h3>
+<p>
+<b>Learning Inductive Program Synthesis (LIPS)</b>
+</p>
+<p class="fragment (appear)">
+• choose an <font color="#de7a18">attribute function</font>
+ \[\begin{align*}
+   \mathcal A: \text{programs} &\to \text{attribute vectors}\\
+   P &\mapsto \mathbf{a_P}\\
+   \end{align*}\]
+</p>
+
+<p class="fragment (appear)">
+• train a model to predict \(q(\mathbf a | \mathcal E)\), the
+   probability that attribute \(\mathbf a\) <font color="#de7a18">is realized</font>
+   in the target program, given \(\mathcal E\) some I/O examples
+</p>
+
+<p class="fragment (appear)">
+• given some fixed I/O examples, use the trained model as an expert
+   to guide the search in the program space
+</p>
+</section>
+<section id="slide-org7b8291b">
+<h3 id="org7b8291b">Challenges</h3>
+<p class="fragment (appear)">
+• need to find <b>useful</b> attributes
+</p>
+<ul>
+<li class="fragment appear"><font color="#de7a18">predictable</font> from I/O</li>
+<li class="fragment appear"><font color="#de7a18">reducing</font> the search space</li>
+
+</ul>
+<p class="fragment (appear)">
+• need to <b>train</b> the model
+</p>
+<ul>
+<li class="fragment appear">data generation</li>
+<li class="fragment appear">choice of the model</li>
+
+</ul>
+<p class="fragment (appear)">
+• need to find <font color="#de7a18">efficient ways</font> to enumerate programs using the oracle
+</p>
+
+</section>
+<section id="slide-org48734c4">
+<h3 id="org48734c4">In practice</h3>
+<p>
+For any instruction \(i\), 
+ learn \(q(\mathbf {a^i_P}| \mathcal E) = \Pr (i \text{ appears in the program }P)\)
+</p>
+
+<p class="fragment (appear)">
+<b>Search algorithms</b>
+</p>
+<p class="fragment (appear)">
+• <font color="#de7a18">biased DFS</font>
+</p>
+<ol>
+<li class="fragment appear">choose a maximal length T</li>
+<li class="fragment appear">choose the first instruction to be the one maximizing \(\Pr (i
+        \text{ appears in }P)\) and recursively fill the rest of the program, before moving on to a next choice for the first instruction.</li>
+
+</ol>
+<p class="fragment (appear)">
+• <font color="#de7a18">Sort-and-add enumeration</font>
+</p>
+
+</section>
+<section id="slide-org606c483">
+<h3 id="org606c483">Weaknesses</h3>
+<p>
+• <b>DFS</b>: some tuples are tested lately despite being pretty likely
+</p>
+<img src="images/weak.png"  height="160" align:left>
+<ul>
+<li>first: position 36</li>
+<li>second: position \(35\times36^4 = 58786560\)</li>
+
+</ul>
+
+<p>
+• <b>Sort-and-add</b>: test several time the same tuples + a tuple can be penalized for only one bad instruction
+</p>
+<img src="images/weak2.png"  height="160" align:left>
+<ul>
+<li>ratio second/first position \(\sim 100\)</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org814cd55">
+<h2 id="org814cd55">Blind mastermind</h2>
+<ul>
+<li>\(n\) colors (= \(n\) instructions)</li>
+<li>a tuple of colors of size \(k\) (= a program of length \(k\))</li>
+
+</ul>
+<p>
+Setting: <font color="#de7a18">an unknown distribution</font> \(D\) on tuples
+</p>
+<p class="fragment (appear)">
+<b>The game</b><br />
+• a secret tuple \(t\) is sampled from a distribution \(D\) <br />
+• the player guesses tuples until \(t\) is found
+</p>
+<p class="fragment (appear)">
+<b>Goal</b><br />
+The player wants a strategy \(S\) that minimizes
+\[\mathbb{E}_{t\sim D}(\text{number of guesses to find }t \text{ with }S )\]
+</p>
+</section>
+<section id="slide-orgceab469">
+<h3 id="orgceab469">Deterministic strategy</h3>
+<p>
+A <font color="#de7a18">deterministic strategy</font> is an order on tuples
+\[\sigma: \text{tuples} \to [n^k] \]
+</p>
+
+<p>
+We want to minimize
+\[\min_{\sigma} \sum_{t} \sigma(t)\cdot D(t)\]
+</p>
+
+<p>
+that we can write more concisely using a scalar product
+ \[\min_{\sigma} [\sigma, D]\]
+</p>
+
+</section>
+<section id="slide-org92b7f58">
+<h3 id="org92b7f58">General strategies</h3>
+<p>
+A <font color="#de7a18">randomized strategy</font> is a distribution \(S\) on orders
+</p>
+
+<p>
+This time, we want to minimize
+\[\min_S \sum_{\sigma \in \mathfrak{S}([n]^k)} S(\sigma) \cdot [\sigma, D]\]
+</p>
+</section>
+<section id="slide-orgb17960c">
+<h4 id="orgb17960c">Extremal cases</h4>
+<p>
+• No information about \(D\)
+</p>
+<ul>
+<li>play the <font color="#de7a18">uniform strategy</font></li>
+
+</ul>
+<p>
+• Full information about \(D\)
+</p>
+<ul>
+<li>play a <font color="#de7a18">deterministic strategy</font> \(\sigma\) such that \(D(\sigma^{-1}(1))> D(\sigma^{-1}(2)) > \dots > D(\sigma^{-1}(n^k))\)</li>
+
+</ul>
+</section>
+<section id="slide-org94f66be">
+<h4 id="org94f66be">No memory case</h4>
+<p>
+<font color="#de7a18">Small riddle</font>
+</p>
+
+<p>
+You have a biased coin with probabilities \((\frac 2 3,\frac 1 3)\). A master
+tosses the coin and you want to guess if that's head or
+tail. <b><i>Problem</i></b>: you can't memorize your previous guesses.
+</p>
+<p class="fragment (appear)">
+<font color="#de7a18">Solution</font><br />
+Sample from a biased coin with probabilities \((\frac{\sqrt 2}{1+ \sqrt 2},\frac{1}{1+ \sqrt 2})\)
+</p>
+
+</section>
+<section id="slide-org94f66be-split">
+<p>
+ <mark>⠀Theorem⠀</mark><br />
+With full knowledge of \(D\), the best <font color="#de7a18">memoryless</font> strategy is
+\[D'(t) = \frac{\sqrt{D(t)}}{\sum_{t'} \sqrt{D(t')}}\]
+</p>
+
+<ul>
+<li>Nice if hard to compute <font color="#de7a18">on the fly</font> the order \(\sigma_D\)</li>
+<li>Easy to run tests in parallel</li>
+
+</ul>
+</section>
+<section id="slide-org08e0db0">
+<h4 id="org08e0db0">Partial information: "marginals"</h4>
+<p>
+Now we know for all color \(c\):
+\[M_{c} = \frac{\underset{t \sim D}{\mathbb{E}}(\#\{j \text{ s.t } t[j] = c\})}{k}\]
+</p>
+
+<p class="fragment (appear)">
+<b>Heuristic</b><br />
+Imagine you play against \(D_M(t) = \prod_j M_{t[j]}\) <br />
+</p>
+
+</section>
+<section id="slide-org39d988b">
+<h4 id="org39d988b">Playing against \(D_M\)</h4>
+<p>
+Can argue you are in an <font color="#de7a18">average-case scenario</font> since
+ \[\inf_S \underset{D \text{ that respects }M}{\mathbb{E}}(\underset{t\sim D}{\mathbb{E}}(\text{number of guesses to find }t \text{ with }S ))\]
+ is equal to
+ \[\inf_S \underset{t\sim D_M}{\mathbb{E}}(\text{number of guesses to find }t \text{ with }S )\]
+</p>
+
+<p class="fragment (appear)">
+<b>Good thing</b><br />
+   In other words, you fight against one particular distribution, \(D_M\)
+</p>
+
+<p class="fragment (appear)">
+<b>Best strategy</b><br />
+   Play the order \(\sigma_{D_M}\) given by \(D_M\)
+</p>
+
+</section>
+<section id="slide-org39d988b-split">
+<p>
+In a <font color="#de7a18">worst-case scenario</font>, we would like to optimize
+ \[\inf_S \sup_{D \text{ that respects }M}(\underset{t\sim D}{\mathbb{E}}(\text{number of guesses to find }t \text{ with }S ))\]
+</p>
+
+<p>
+but this is another story…
+</p>
+
+</section>
+<section id="slide-org4814eb6">
+<h4 id="org4814eb6">Playing against \(D_M\)</h4>
+<p>
+If you play the best strategy, the average time to find a tuple is
+\[[\sigma_{D_M},D_M]\]
+</p>
+
+<p class="fragment (appear)">
+<font color="#de7a18">Problem</font>: How to find efficiently the order \(\sigma_{D_M}\)???
+</p>
+
+<p class="fragment (appear)">
+<font color="#de7a18">Instead</font>: Play the best memoryless strategy \(D'_{M}(t) = \frac{\sqrt{D'_{M}(t)}}{\sum_{t'} \sqrt{D_M(t')}}\)
+</p>
+
+
+<p class="fragment (appear)">
+ <mark>⠀Theorem⠀</mark><br />
+\([\sigma_{D_M},D_M] \leq [D'_M,D_M] \leq k\cdot\ln n \cdot [\sigma_{D_M},D_M]\)
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org9bd7410">
+<h2 id="org9bd7410">Conclusion</h2>
+</section>
+</section>
+<section>
+<section id="slide-org5dd451e">
+<h2 id="org5dd451e">Thanks!</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="https://guillaume-lagarde.github.io/talks/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://guillaume-lagarde.github.io/talks/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://guillaume-lagarde.github.io/talks/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://guillaume-lagarde.github.io/talks/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://guillaume-lagarde.github.io/talks/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://guillaume-lagarde.github.io/talks/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
