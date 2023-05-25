@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Habits tracker</title>
+</head>
+
+<body>
+    <h1>Habits tracker</h1>
+
+    <form id="check-form">
+        <label for="keys-input">Keys to display (separated by a comma):</label><br>
+        <textarea id="keys-input" rows="2" cols="50"></textarea><br>
+        <label for="text-input">Logs:</label><br>
+        <textarea id="text-input" rows="4" cols="50"></textarea>
+        <button type="submit">Check</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('check-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const keysInput = document.getElementById('keys-input');
+            const textInput = document.getElementById('text-input');
+
+            const keys = keysInput.value;
+            const text = textInput.value;
+            if (!text) {
+                return;
+            }
+
+            fetch('https://test1029.herokuapp.com/check', {
+                // fetch('http://192.168.1.28:8000/check', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    text: text,
+                    keys_to_retrieve: keys,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Use innerHTML instead of textContent to insert HTML
+                    document.getElementById('result').innerHTML = 'Result: <br>' + data.result;
+
+                    // Create a new image element
+                    const img = new Image();
+
+                    // Set the source of the image to the base64 data
+                    img.src = 'data:image/png;base64,' + data.image;
+
+                    // Append the image to the body of the document
+                    document.body.appendChild(img);
+
+                    // Create a new image element
+                    const img_h = new Image();
+
+                    // Set the source of the image to the base64 data
+                    img_h.src = 'data:image/png;base64,' + data.image_heatmap;
+
+                    // Append the image to the body of the document
+                    document.body.appendChild(img_h);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
