@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Habits Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Habits Tracker</h1>
+
+        <div class="card-body" id="box">
+            <h5 class="card-title">Welcome to Habit Tracker!</h5>
+            <p>Habit Tracker is a minimalistic web page designed to assist you in monitoring and improving your daily habits. Unlike other applications, Habit Tracker doesn't rely on predefined templates; instead, it embraces a flexible, user-centric approach. You create and maintain your logs in any text editor of your choice. Once you've completed your entries, simply copy and paste them into the designated area within this page. This approach guarantees a user experience uniquely tailored to your personal needs.</p>
+
+            <h6 class="mt-3"><strong>Getting Started: Define Your Keys</strong></h6>
+            <p>Start your tracking journey by defining your keys. Each key represents a habit or an activity you wish to monitor. You can designate any symbol, letter, or word as a key. The key is the heart of your tracking process, so make sure it's intuitive!</p>
+
+            <h6 class="mt-3"><strong>Types of Keys</strong></h6>
+            <p>In Habit Tracker, the keys used to log habits fall into two categories:</p>
+            <ul>
+                <li><strong>Boolean:</strong> Keys followed by a comma fall under this category. When a Boolean key shows up in a log, it signifies that the corresponding habit was undertaken that day (e.g., "R" for restaurant). Boolean keys are tracked by their occurrences. You can also annotate these keys with comments by placing the comment after the key, separated by a comma.</li>
+                <li><strong>By Value:</strong> These keys are defined with a colon. They express the count or amount associated with the habit for a particular day.</li>
+            </ul>
+
+            <h6 class="mt-3"><strong>Key Definitions and Log Entries</strong></h6>
+            <p>For clarity, we've provided some examples of key definitions and log entries below. Note that we've used '&amp;' to denote smileys and '{' for comments, deviating from '#' and '$' that are used by default. If you prefer the conventional symbols, simply leave out the '#&amp;' or '${' lines, and the application will default to '#' for smileys and '$' for comments.</p>
+            <pre class="bg-light p-2 rounded">
+<strong>Definition of Keys:</strong>
+S, Sport
+N: Nuit
+V, Vin
+R, Restaurant
+#&amp;
+${
+
+<strong>Sample Logs:</strong>
+20230423
+S
+V
+S
+N: 3
+Mood, Good
+{ A very productive day
+S, kick-ass HIIT session
+
+20230424
+S
+V
+R
+N: 2
+Mood, Good
+{ Bad mood today.
+S, Went for a run in the park
+&amp;😀
+            </pre>
+        </div>
+        
+        <form id="check-form" class="mb-4">
+            <div class="form-group">
+                <label for="keys-input">Keys to display (separated by a comma):</label>
+                <textarea id="keys-input" class="form-control" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="text-input">Logs:</label>
+                <textarea id="text-input" class="form-control" rows="8"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="min-date">Min Date:</label>
+                    <input type="date" id="min-date" name="min-date" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="max-date">Max Date:</label>
+                    <input type="date" id="max-date" name="max-date" class="form-control">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Check</button>
+        </form>
+
+        <div id="result" class="mb-4"></div>
+        <div id="image-container"></div>
+    </div>
+
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+
+</html>
