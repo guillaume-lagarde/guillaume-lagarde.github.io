@@ -38,15 +38,8 @@ class Node:
         """
         Expand the current node by creating a new child node (taken from the list of untried moves)
         """
-        move = random.choice(self.untried_moves)
-        self.untried_moves.remove(move)
-        new_game_state = deepcopy(
-            self.game_state
-        )  # Create a deep copy to avoid mutating the original game state
-        new_game_state.make_move(move)
-        child_node = Node(game_state=new_game_state, parent=self, move=move)
-        self.children.append(child_node)
-        return child_node
+        # TO FILL
+        pass
 
     def update(self, result):
         """
@@ -69,17 +62,17 @@ def run_mcts(root, iterations=3000):
         game = deepcopy(node.game_state)  # Copy current game state
 
         # 1. Selection
-        while not node.has_untried_moves() and node.has_children():
+        while # TO FILL:
             # TO FILL
             pass
 
         # 2. Expansion
-        if node.has_untried_moves() and not game.is_game_over():
+        if # TO FILL:
             # TO FILL
             pass
         
         # 3. Simulation: rollout to the end of the game using a random strategy
-        while not game.is_game_over():
+        while # TO FILL:
             # TO FILL
             pass
 
