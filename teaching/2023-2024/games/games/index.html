@@ -1,0 +1,391 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Page professionnelle de Guillaume Lagarde">
+      
+      
+        <meta name="author" content="Guillaume Lagarde (guillaume.lagarde@ens-lyon.org)">
+      
+      
+        <link rel="canonical" href="https://guillaume-lagarde.github.io/teaching/2023-2024/games/games/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+    
+    
+      
+        <title>Games Synthesis and Control (second part) - Guillaume Lagarde</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#games-synthesis-and-control-second-part" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Guillaume Lagarde" class="md-header__button md-logo" aria-label="Guillaume Lagarde" data-md-component="logo">
+      
+  <img src="../../../../assets/logo_reverse.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guillaume Lagarde
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Games Synthesis and Control (second part)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Guillaume Lagarde" class="md-nav__button md-logo" aria-label="Guillaume Lagarde" data-md-component="logo">
+      
+  <img src="../../../../assets/logo_reverse.svg" alt="logo">
+
+    </a>
+    Guillaume Lagarde
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../publications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Publications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Teaching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#research-articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Research articles
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="games-synthesis-and-control-second-part">Games Synthesis and Control (second part)</h1>
+<p>In this second part, we explore the theoretical foundations of reinforcement learning, an extremely powerful artificial intelligence framework that enables machines to acquire knowledge and make decisions by interacting with their environment. We explore in detail fundamental concepts such as the one-armed bandit problem, Markov decision processes, trade-offs between exploration and exploitation, Monte-Carlo and Q-learning, etc., as well as advanced techniques such as function approximation and Deep Q-learning. By the end of this course, you will have acquired the skills needed to understand AlphaGo, the first AI to outperform humans at the game of go.</p>
+<h3 id="references">References:</h3>
+<ol>
+<li><a href="http://incompleteideas.net/book/the-book-2nd.html"><strong>Reinforcement Learning: An Introduction</strong></a> by Barto and Sutton</li>
+<li><a href="https://cs.nyu.edu/~mohri/mlbook/"><strong>Foundation of Machine Learning</strong></a> by Mehryar Mohri, Afshin Rostamizadeh, and Ameet Talwalkar</li>
+<li><a href="https://www.deepmind.com/learning-resources/reinforcement-learning-lecture-series-2021"><strong>DeepMind Reinforcement Learning Lecture Series 2021</strong></a></li>
+</ol>
+<h3 id="exercices">Exercices</h3>
+<ul>
+<li><a href="../TDs/TD1/td1/">TD1</a>: Implementation of value iteration, monte carlo, sarsa, q_learning, learning with linear function approximation.</li>
+<li><a href="../TDs/TD2/td2/">TD2</a>: Implementation Monte Carlo Tree Search</li>
+</ul>
+<h3 id="research-articles">Research articles</h3>
+<ol>
+<li>
+<p><a href="https://arxiv.org/abs/1511.05952">Schaul, T., Quan, J., Antonoglou, I., &amp; Silver, D. Prioritized experience replay. arXiv preprint, 2015.</a></p>
+</li>
+<li>
+<p><a href="https://arxiv.org/pdf/1408.2028.pdf">Coquelin, P. A., &amp; Munos, R. Bandit algorithms for tree search. arXiv preprint, 2007.</a></p>
+</li>
+<li>
+<p><a href="https://arxiv.org/abs/1509.06461">Van Hasselt, H., Guez, A., &amp; Silver, D. Deep reinforcement learning with double q-learning. Proceedings of the AAAI conference on artificial intelligence, 2016.</a></p>
+</li>
+<li>
+<p><a href="https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf">Mnih, V., Kavukcuoglu, K., Silver, D., et al. Playing atari with deep reinforcement learning. arXiv preprint, 2013.</a></p>
+</li>
+<li>
+<p><a href="https://people.csail.mit.edu/lpk/papers/aij98-pomdp.pdf">Kaelbling, L. P., Littman, M. L., &amp; Cassandra, A. R. Planning and acting in partially observable stochastic domains. Artificial intelligence, 1998.</a></p>
+</li>
+<li>
+<p><a href="http://www.cs.cmu.edu/~ggordon/jpineau-ggordon-thrun.ijcai03.pdf">Pineau, J., Gordon, G., &amp; Thrun, S. Point-based value iteration: An anytime algorithm for POMDPs. Ijcai, 2003.</a></p>
+</li>
+<li>
+<p><a href="https://proceedings.neurips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf">Sutton, R. S., McAllester, D., Singh, S., &amp; Mansour, Y. Policy gradient methods for reinforcement learning with function approximation. Advances in neural information processing systems, 1999.</a></p>
+</li>
+<li>
+<p><a href="https://proceedings.neurips.cc/paper_files/paper/2010/file/091d584fced301b442654dd8c23b3fc9-Paper.pdf">Hasselt, H. Double Q-learning. Advances in neural information processing systems, 2010.</a></p>
+</li>
+<li>
+<p><a href="https://arxiv.org/abs/1710.02298">Hessel, M., Modayil, J., Van Hasselt, H., et al. Rainbow: Combining improvements in deep reinforcement learning. Proceedings of the AAAI conference on artificial intelligence, 2018.</a></p>
+</li>
+</ol>
+<p>These last two papers are a little bit more mathematical:</p>
+<ol>
+<li>
+<p><a href="https://www.mit.edu/~jnt/Papers/J063-97-bvr-td.pdf">John N. Tsitsiklis, Benjamin Van Roy. An analysis of temporal-difference learning with function approximation.</a></p>
+</li>
+<li>
+<p><a href="https://homes.di.unimi.it/~cesabian/Pubblicazioni/ml-02.pdf">Auer, P., Cesa-Bianchi, N., &amp; Fischer, P. Finite-time analysis of the multiarmed bandit problem. Machine learning, 2002.</a></p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2021 Code Inside Out<br> <a href="https://github.com/vuquangtrong/mkdocs-material-blog">Blog Theme</a> / <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>
