@@ -355,14 +355,16 @@
     </div>
 
     <!-- Right Column for the Picture -->
-    <div style="flex: 1; text-align: center; padding: 15px;">
-        <img src="assets/ppp.jpeg"
-             alt="pp"
-             style="width: 150pt; /* Adjust as necessary */
-                    height: 150pt; /* Adjust as necessary */
-                    border-radius: 50%; /* Circular image */
-                    margin-left: 15px;" />
-    </div>
+<div style="flex: 1; text-align: center; padding: 15px; display: flex; justify-content: center; align-items: center;">
+    <img src="assets/ppp.jpeg"
+         alt="pp"
+         style="width: 150pt; /* Adjust as necessary */
+                height: auto; /* Maintain aspect ratio */
+                border-radius: 50%; /* Circular image */
+                object-fit: cover; /* Ensures the image covers the area without losing its aspect ratio */
+                max-width: 100%; /* Limit the size on smaller screens */
+                aspect-ratio: 1 / 1; /* Maintain square aspect ratio */"/>
+</div>
 </div>
 
 <hr />
