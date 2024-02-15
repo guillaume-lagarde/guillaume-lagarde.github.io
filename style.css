@@ -1,0 +1,114 @@
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../font/fontawesome-webfont.eot?v=3.2.1');
+    src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Base styling */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    background-color: #ffffff;
+    margin: 0;
+    padding-left: 270px; /* Adjust based on nav menu width, keep consistent with the template */
+    line-height: 1.6;
+}
+
+header, main, footer {
+    margin: 0 auto;
+    max-width: 800px; /* Adjust based on preference */
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #5c5c5c;
+    font-weight: 300;
+}
+
+h3, h4, h5, h6{
+    color: #050505;
+    font-weight: 400;
+}
+
+a, a:visited {
+    color: rgb(64, 81, 181);
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    /* text-decoration: underline; */
+    color: #ff6e42;
+}
+
+/* Navigation menu styling */
+.nav-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #132434;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #ffffff;
+}
+
+.nav-menu h3 {
+    color: #ffffff;
+}
+
+.nav-menu a, .nav-menu a:visited {
+    color: #ffffff;
+    display: block;
+    margin: 0px 0;
+}
+
+.nav-menu a:hover, .nav-menu a:focus {
+    color: #ff6e42;
+}
+
+/* Additional styling for abstract, toc, etc. */
+.abstract, .toc {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    body {
+        padding-top: 60px; /* Add top padding to the body to prevent content from being hidden behind the fixed nav menu */
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .nav-menu {
+        position: fixed; /* Fix position to top of viewport */
+        top: 0; /* Align to the top */
+        left: 0; /* Align to the left */
+        width: 100%; /* Stretch across the full width of the viewport */
+        height: auto; /* Adjust height automatically based on content */
+        z-index: 1000; /* Ensure menu is above other content */
+        display: flex; /* Keep the flex display for horizontal layout */
+        flex-wrap: wrap; /* Allow items to wrap */
+        justify-content: space-around; /* Distribute space around items */
+        padding: 10px 0; /* Adjust padding for aesthetics */
+        background-color: #132434; /* Ensure background color covers the nav area */
+    }
+
+    .nav-menu a, .nav-menu a:visited {
+        flex: 1 1 auto; /* Flex properties for evenly distributing links */
+        margin: 5px 10px; /* Adjust margins for spacing between links */
+        text-align: center; /* Center-align the text for each link */
+    }
+
+    /* Hide the image on screens smaller than 992px */
+    .menu-image {
+        display: none;
+    }
+}
+
