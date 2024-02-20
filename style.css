@@ -6,23 +6,35 @@
     font-style: normal;
 }
 
-/* Base styling */
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #333;
     background-color: #ffffff;
     margin: 0;
-    padding-left: 270px; /* Adjust based on nav menu width, keep consistent with the template */
+    padding-left: 270px; 
+    padding-right: 20px;
     line-height: 1.6;
 }
 
 header, main, footer {
-    margin: 0 auto;
-    max-width: 800px; /* Adjust based on preference */
-    padding: 20px;
+    margin: 0 0;
+    padding: 0px;
 }
 
+
+footer {
+    clear: both;
+    margin: 0;
+    border-top: 1px dashed #d3d3d3;
+
+    }
+
 h1, h2, h3, h4, h5, h6 {
+    color: #5c5c5c;
+    font-weight: 300;
+}
+
+h2, h3, h4, h5, h6 {
     color: #5c5c5c;
     font-weight: 300;
 }
@@ -32,17 +44,23 @@ h3, h4, h5, h6{
     font-weight: 400;
 }
 
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #d3d3d3;
+}
+
 a, a:visited {
     color: rgb(64, 81, 181);
     text-decoration: none;
 }
 
 a:hover, a:focus {
-    /* text-decoration: underline; */
+
     color: #ff6e42;
 }
 
-/* Navigation menu styling */
 .nav-menu {
     position: fixed;
     left: 0;
@@ -70,7 +88,7 @@ a:hover, a:focus {
     color: #ff6e42;
 }
 
-/* Additional styling for abstract, toc, etc. */
+
 .abstract, .toc {
     background-color: #e9ecef;
     padding: 15px;
@@ -78,10 +96,9 @@ a:hover, a:focus {
     margin-bottom: 20px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 992px) {
     body {
-        padding-top: 60px; /* Add top padding to the body to prevent content from being hidden behind the fixed nav menu */
+        padding-top: 60px;
         padding-left: 10px;
         padding-right: 10px;
     }
