@@ -1,131 +1,189 @@
-@font-face {
-    font-family: 'FontAwesome';
-    src: url('../font/fontawesome-webfont.eot?v=3.2.1');
-    src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
-    font-weight: normal;
-    font-style: normal;
+/* Updated Style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    --nav-menu-width: 300px; /* Set the width of the navigation menu here */
+    --nav-menu-total: calc(var(--nav-menu-width) + 20px); /* Add 20px to the width */
 }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    color: #2c3e50;
     background-color: #ffffff;
     margin: 0;
-    padding-left: 270px; 
-    padding-right: 20px;
-    line-height: 1.6;
+    padding: 0;
+    padding-left: var(--nav-menu-total); /* Match the width of the navigation menu */
+    line-height: 1.8;
 }
 
-header, main, footer {
-    margin: 0 0;
-    padding: 0px;
-}
-
-
-footer {
-    clear: both;
-    margin: 0;
-    border-top: 1px dashed #d3d3d3;
-
-    }
-
-h1, h2, h3, h4, h5, h6 {
-    color: #5c5c5c;
-    font-weight: 300;
-}
-
-h2, h3, h4, h5, h6 {
-    color: #5c5c5c;
-    font-weight: 300;
-}
-
-h3, h4, h5, h6{
-    color: #050505;
-    font-weight: 400;
-}
-
-hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 0;
-    border-top: 1px solid #d3d3d3;
-}
-
-a, a:visited {
-    color: rgb(64, 81, 181);
-    text-decoration: none;
-}
-
-a:hover, a:focus {
-
-    color: #ff6e42;
-}
-
+/* Navigation Menu */
 .nav-menu {
     position: fixed;
     left: 0;
     top: 0;
-    width: 250px;
+    width: var(--nav-menu-width);
     height: 100%;
-    overflow-y: auto;
-    background-color: #132434;
-    padding: 20px;
-    box-sizing: border-box;
-    color: #ffffff;
+    background: #f7f7f7;
+    padding: 25px;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+    color: #2c3e50;
+    text-align: center;
 }
 
-.nav-menu h3 {
-    color: #ffffff;
+.nav-menu .profile-section {
+    margin-bottom: 10px;
 }
 
-.nav-menu a, .nav-menu a:visited {
-    color: #ffffff;
-    display: block;
-    margin: 0px 0;
+.nav-menu .profile-image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid #2c3e50;
 }
 
-.nav-menu a:hover, .nav-menu a:focus {
-    color: #ff6e42;
+.nav-menu .profile-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2c3e50;
 }
 
-
-.abstract, .toc {
-    background-color: #e9ecef;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+.nav-menu .profile-description {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 0px;
 }
 
+/* Social Icons */
+.nav-menu .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 5px 0; /* Adjust spacing between social icons and the menu */
+}
+
+.nav-menu .social-icons a {
+    color: #2c3e50;
+    font-size: 1rem; /* Larger icon size */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-menu .social-icons a:hover {
+    color: #3498db; /* Hover color */
+}
+
+/* Navigation Menu List */
+.nav-menu ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 10px 0 0; /* Add margin for spacing */
+    border-top: 1px solid #e9ecef; /* Add border at the top */
+    border-bottom: 1px solid #e9ecef; /* Add border at the top */
+
+}
+
+.nav-menu ul li {
+    margin: 10px 0; /* Spacing between menu items */
+}
+
+.nav-menu ul li a {
+    color: #2c3e50;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1rem; /* Font size for menu links */
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #3498db; /* Hover effect for menu links */
+}
+
+/* Main Content Area */
+main {
+    margin-left: var(--nav-menu-total); /* Match the padding of the body */
+    padding: 40px;
+    max-width: 900px;
+}
+
+/* Apply styles to all anchor links */
+a {
+    color: #3498db; /* Same blue as the menu items */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+li a {
+    color: #3498db; /* Same blue as the menu items */
+    text-decoration: none; /* No underline by default */
+    transition: color 0.3s;
+}
+
+li a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+hr {
+    border: none; /* Remove default border */
+    border-top: 1px solid #c5c8cc; /* Add a top border with color #e9ecef */
+    margin: 20px 0; /* Add vertical spacing */
+}
+
+/* Footer */
+footer {
+    text-align: left;
+    padding: 10px; /* Reduced height */
+    margin-top: 40px;
+    background: #ffffff;
+    color: #2c3e50;
+    font-size: 0.85rem; /* Smaller font size */
+    border-top: 1px solid #e9ecef;
+}
+
+/* Make Menu Horizontal on Smaller Screens */
 @media (max-width: 992px) {
-    body {
-        padding-top: 60px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
     .nav-menu {
-        position: fixed; /* Fix position to top of viewport */
-        top: 0; /* Align to the top */
-        left: 0; /* Align to the left */
-        width: 100%; /* Stretch across the full width of the viewport */
-        height: auto; /* Adjust height automatically based on content */
-        z-index: 1000; /* Ensure menu is above other content */
-        display: flex; /* Keep the flex display for horizontal layout */
-        flex-wrap: wrap; /* Allow items to wrap */
-        justify-content: space-around; /* Distribute space around items */
-        padding: 10px 0; /* Adjust padding for aesthetics */
-        background-color: #132434; /* Ensure background color covers the nav area */
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px 0;
+        background: #f7f7f7;
     }
 
-    .nav-menu a, .nav-menu a:visited {
-        flex: 1 1 auto; /* Flex properties for evenly distributing links */
-        margin: 5px 10px; /* Adjust margins for spacing between links */
-        text-align: center; /* Center-align the text for each link */
+    .nav-menu .profile-image {
+        display: block; /* Ensure the profile image is displayed on smaller screens */
+        margin: 0 auto 15px; /* Center the image and add bottom margin */
     }
 
-    /* Hide the image on screens smaller than 992px */
-    .menu-image {
-        display: none;
+    .nav-menu ul {
+        display: flex; /* Switch to horizontal layout */
+        flex-direction: row; /* Horizontal direction */
+        justify-content: center; /* Center align items */
+        gap: 20px; /* Add spacing between items */
+    }
+
+    .nav-menu ul li {
+        margin: 0; /* Reset margin for horizontal layout */
+    }
+
+    body {
+        padding-left: 0; /* Remove padding for small screens */
+    }
+
+    main {
+        margin-left: 0;
+        padding: 20px;
     }
 }
-
