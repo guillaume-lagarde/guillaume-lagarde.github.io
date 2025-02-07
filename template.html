@@ -37,7 +37,9 @@ $endif$
     }
   </style>
 $for(css)$
-  <link rel="stylesheet" href="$css$" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 $endfor$
 $for(header-includes)$
   $header-includes$
@@ -52,18 +54,34 @@ $endif$
 <body>
   <!-- Navigation Menu -->
   <div class="nav-menu">
-    <!-- <img src="assets/ppp.jpeg" alt="organic" class="menu-image"
-    style="width: 150pt;
-        height: auto;
-        border-radius: 50%;
-        object-fit: cover;
-        max-width: 80%;
-        aspect-ratio: 1 / 1;"/> -->
-
-    <a href="index.html">Home</a><br>
-    <a href="publications.html">Publications and Talks</a><br>
-    <a href="teaching.html">Teaching</a><br>
-  </div>
+    <div class="profile-section">
+      <a href="index.html">
+        <img src="assets/pp.png" alt="Guillaume Lagarde" class="profile-image">
+    </a>
+        <div class="profile-name">Guillaume Lagarde</div>
+        <div class="profile-description">
+            Associate professor<br>
+            Computer science ∩ Math<br>
+            guillaume.lagarde [at] labri [dot] fr
+        </div>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/guillaume-lagarde-8b0844134/" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://scholar.google.com/citations?user=1QTxVLEAAAAJ&hl=en" target="_blank" aria-label="Google Scholar">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="https://dblp.org/pid/182/1362.html" target="_blank" class="dblp-icon" aria-label="DBLP">
+        DBLP
+      </a>
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="publications.html">Publications and Talks</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+    </ul>
+</div>
 
 $for(include-before)$
 $include-before$
