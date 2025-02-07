@@ -20,7 +20,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* Add CSS for the navigation menu */
     .nav-menu {
       position: fixed;
@@ -41,13 +40,17 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
 </head>
 <body>
   <!-- Navigation Menu -->
   <div class="nav-menu">
     <div class="profile-section">
       <a href="index.html">
-        <img src="assets/pp.png" alt="Guillaume Lagarde" class="profile-image">
+        <img src="assets/pp.jpeg" alt="Guillaume Lagarde" class="profile-image">
     </a>
         <div class="profile-name">Guillaume Lagarde</div>
         <div class="profile-description">
@@ -89,8 +92,9 @@ hesitate to contact me.</p>
 <ul>
 <li><a href="assets/numerics-recommender-systems.pdf">Recommender
 Systems</a></li>
-<li><a href="assets/Talk_CoA.pdf">(1+eps)-approximation for ultrametric
-embedding</a></li>
+<li><a href="assets/Talk_CoA.pdf">(1+<span
+class="math inline">\(\varepsilon\)</span>)-approximation for
+ultrametric embedding</a></li>
 <li><a href="assets/Talk_LaBRI_arithmetic_circuits.pdf">Arithmetic
 complexity</a></li>
 <li><a href="assets/Talk%20IRIF_LTL_learning.pdf">LTL Learning</a></li>
